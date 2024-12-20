@@ -1,0 +1,61 @@
+{
+  "id": "229",
+  "name": "Meghana Foods",
+  "cloudinaryImageId": "iivuhjc2mswi9lublktf",
+  "locality": "Koramangala",
+  "areaName": "Koramangala",
+  "costForTwo": "₹500 for two",
+  "cuisines": [
+      "Biryani",
+      "Andhra",
+      "South Indian",
+      "Chinese",
+      "Seafood"
+  ],
+  "avgRating": 4.5,
+  "parentId": "635",
+  "avgRatingString": "4.5",
+  "totalRatingsString": "10K+",
+  "promoted": true,
+  "adTrackingId": "cid=11781024~p=1~eid=0000018e-1fa8-ae4c-453e-ccae009c017d~srvts=1709928132172~69584",
+  "sla": {
+      "deliveryTime": 20,
+      "lastMileTravel": 1.4,
+      "serviceability": "SERVICEABLE",
+      "slaString": "20-25 mins",
+      "lastMileTravelString": "1.4 km",
+      "iconType": "ICON_TYPE_EMPTY"
+  },
+  "availability": {
+      "nextCloseTime": "2024-03-09 02:00:00",
+      "opened": true
+  },
+  "badges": {},
+  "isOpen": true,
+  "aggregatedDiscountInfoV2": {},
+  "type": "F",
+  "badgesV2": {
+      "entityBadges": {
+          "imageBased": {},
+          "textBased": {},
+          "textExtendedBadges": {}
+      }
+  },
+  "orderabilityCommunication": {
+      "title": {},
+      "subTitle": {},
+      "message": {},
+      "customIcon": {}
+  },
+  "differentiatedUi": {
+      "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+      "differentiatedUiMediaDetails": {
+          "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+          "lottie": {},
+          "video": {}
+      }
+  },
+  "reviewsSummary": {},
+  "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+  "restaurantOfferPresentationInfo": {}
+}
