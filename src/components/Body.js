@@ -7,16 +7,11 @@ import useOnlineSatus from '../utils/useOnlineStatus';
 import UserContext from '../utils/UserContext';
 
 const Body = () => {
-  // Local State Variables - Super powerful variables
   const [listOfRestaurants, setListOfRestaurant] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
-
   const [searchText, setSearchText] = useState("");
 
   const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
-
-  // whenever state variables update, react triggers a reconciliation cycle(re-renders the components)
-  // console.log("Body Rendered");
 
   useEffect(() => {
     fetchData();
@@ -25,95 +20,72 @@ const Body = () => {
   const fetchData = async () => {
     const data = await fetch(SWIGGY_API);
     const json = await data.json();
-console.log(json);
-    // Optional chaining
-    setListOfRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-      );
-    setFilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-      );
+    setListOfRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || []);
+    setFilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || []);
   };
 
   const onlineStatus = useOnlineSatus();
   if (onlineStatus === false) {
-    return (
-      <h1>Looks like you're offline!! check your internet connection</h1>
-    )
+    return <h1>Looks like you're offline! Check your internet connection.</h1>;
   }
 
-  const {loggedInUser, setUserName} = useContext(UserContext);
+  const { loggedInUser, setUserName } = useContext(UserContext);
 
-  // we have use a ternary oparator
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body bg-pink-50 bg-opacity-40">
-      <div className="filter flex">
-        <div className="search p-4 m-4 ml-28">
+    <div className="body bg-gray-100 p-4">
+      <div className="filter flex flex-col lg:flex-row justify-between items-center gap-4 mb-6">
+        <div className="search flex items-center gap-2">
           <input
             type="text"
-            data-testid="searchInput"
-            className='search-box border border-solid border-gray-400 w-56 py-1 focus:ring-2 focus:ring-blue-300 focus:outline-none rounded-md'
-            placeholder='search a restaurant you want...'
+            className="border border-gray-400 p-2 rounded-lg w-60 focus:ring-2 focus:ring-blue-300 focus:outline-none"
+            placeholder="Search a restaurant..."
             value={searchText}
-            onChange={(e) => {
-              setSearchText(e.target.value);
-            }}
+            onChange={(e) => setSearchText(e.target.value)}
           />
-          <button className='px-4 py-2 m-4 bg-green-200 hover:bg-green-300 rounded-lg text-slate-700'
+          <button
+            className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
             onClick={() => {
-              // Filter the restaurant cards and update the UI
-              // searchText
-              console.log(searchText);
-              const filteredRestaurant = listOfRestaurants.filter(
-                (res) => res.info.name.toLowerCase().
-                  includes(searchText.toLowerCase())
+              const filtered = listOfRestaurants.filter((res) =>
+                res.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
-              setFilteredRestaurant(filteredRestaurant);
+              setFilteredRestaurant(filtered);
             }}
           >
             Search
           </button>
         </div>
-        <div className='top-rated-btn p-4 m-4 flex items-center'>
-          <button
-            className='filter-btn bg-gray-200 px-4 py-2 m-4 rounded-lg hover:bg-gray-300 text-slate-700'
-            // Filter logic here
-            onClick={() => {
-              const filteredList = listOfRestaurants.filter(
-                (res) => res.info.avgRating > 4
-              );
-              setFilteredRestaurant(filteredList);
-            }}
-          >
-            Top Rated Restaurants
-          </button>
+        <button
+          className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+          onClick={() => {
+            const filteredList = listOfRestaurants.filter((res) => res.info.avgRating > 4);
+            setFilteredRestaurant(filteredList);
+          }}
+        >
+          Top Rated Restaurants
+        </button>
+        <div className="flex items-center gap-2">
+          <label className="text-gray-700 font-medium">User Name:</label>
+          <input
+            type="text"
+            className="border border-gray-400 p-2 rounded-lg"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
         </div>
-        <div className='top-rated-btn p-4 m-4 flex items-center'>
-          <label>UserName : </label>
-          <input className='border border-black p-1' type="text" 
-          value={loggedInUser} onChange={(e)=>setUserName(e.target.value)}/>
-        </div>
-
       </div>
-      <div className="res-container flex flex-wrap w-auto justify-center">
-        {/* i will use a array method map over here */}
 
-        {/* so it will loop over all of these restaurant for each reastrau. we have to return a restaurant card. {for i am returing a restaurant card for each restaurant.} {I am doing a resList of map for each restaurant i am just rendering a restaurant card.} */}
-
-        {
-          filteredRestaurant.map((restaurant) => (
-            <Link
-             key={restaurant?.info.id} to={"/restaurants/" + restaurant?.info.id}
-            >
-              {/** if the restaurant is promoted then add a promoted label to it */}
-              {
-                restaurant?.info.promoted ? 
-                (<RestaurantCardPromoted resData={restaurant?.info} />) : 
-                (<RestaurantCard resData={restaurant?.info} />)
-              }
-
-            </Link>
-          ))}
+      <div className="res-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {filteredRestaurant.map((restaurant) => (
+          <Link key={restaurant?.info.id} to={`/restaurants/${restaurant?.info.id}`}>
+            {restaurant?.info.promoted ? (
+              <RestaurantCardPromoted resData={restaurant?.info} />
+            ) : (
+              <RestaurantCard resData={restaurant?.info} />
+            )}
+          </Link>
+        ))}
       </div>
     </div>
   );
