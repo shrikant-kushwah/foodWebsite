@@ -4,19 +4,19 @@ Welcome to the Food Website Project! This is a modern, feature-rich platform for
 
 ---
 
-## 🚀 Features
+## 🚀 Features (with Usage Context)
 
-- **Modern UI**: Clean, responsive design using React and Tailwind CSS.
-- **Restaurant Discovery**: Browse a list of restaurants with images, ratings, cuisine types, and delivery times.
-- **Search Functionality**: Quickly find restaurants by name or cuisine.
-- **Detailed Menus**: View individual restaurant menus and categories.
-- **Cart System**: Add and manage items in your cart with Redux state management.
-- **User Authentication (Demo)**: Simulated user context for personalized experience.
-- **Client-Side Routing**: Fast navigation using React Router.
-- **Lazy Loading**: Optimized performance with code-splitting for large components.
-- **Error Handling**: Friendly error pages for invalid routes.
-- **Reusable Components**: Modular structure for easy maintenance and scalability.
-- **Testing**: Unit and integration tests with Jest and React Testing Library.
+- **Modern UI**: Clean, responsive design using React and Tailwind CSS. All pages and components use Tailwind utility classes for consistent, mobile-first styling.
+- **Restaurant Discovery**: The home page (`Body` component) displays a list of restaurants with images, ratings, cuisine types, and delivery times, fetched from mock data or API.
+- **Search Functionality**: The search bar in the header and body allows users to filter restaurants by name or cuisine in real time.
+- **Detailed Menus**: Clicking a restaurant card navigates to the `RestaurantMenu` page, showing menu categories and items for that restaurant.
+- **Cart System**: Users can add menu items to their cart from the menu page. The cart state is managed globally using Redux Toolkit (`cartSlice.js`), and the cart can be viewed/managed on the `/cart` page.
+- **User Authentication (Demo)**: The app uses a simulated user context (`UserContext.js`) to demonstrate how user data can be managed and passed throughout the app.
+- **Client-Side Routing**: Navigation between Home, About, Contact, Grocery, Cart, and dynamic restaurant menu pages is handled by React Router DOM (`App.js`).
+- **Lazy Loading**: Non-critical pages like About and Grocery are loaded lazily using React's `lazy` and `Suspense` for better performance.
+- **Error Handling**: Invalid routes are caught and displayed using a custom `Error` component.
+- **Reusable Components**: Components like `RestaurantCard`, `Header`, `Footer`, and `ItemList` are designed for reuse and scalability.
+- **Testing**: The project includes unit and integration tests for key components (in `src/components/__tests__`) using Jest and React Testing Library.
 
 ---
 
