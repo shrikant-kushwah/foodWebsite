@@ -17,6 +17,8 @@ coverage/
 # Log files
 *.log
 
+*.README_INTERVIEW.md
+
 # Package files
 *.jar
 

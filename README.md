@@ -108,3 +108,37 @@ This project is licensed under the ISC License.
 
 - **Shrikant Kushwah**
 - [GitHub](https://github.com/shrikant-kushwah/namaste-react)
+
+## 💡 Usage Examples
+
+- **Browse Restaurants:**  
+  On the home page, scroll to view a list of restaurants with ratings and cuisine types.
+
+- **Search:**  
+  Use the search bar at the top to filter restaurants by name or cuisine.
+
+- **View Menu:**  
+  Click on a restaurant card to see its menu and categories.
+
+- **Add to Cart:**  
+  Click the "Add" button next to a menu item to add it to your cart.
+
+- **View Cart:**  
+  Click the cart icon in the header to review or remove items before checkout.
+
+## 🚀 Deployment
+
+### Deploy to Vercel
+
+1. Push your code to GitHub.
+2. Go to [Vercel](https://vercel.com/) and sign in.
+3. Click **New Project** and import your repository.
+4. Set the framework preset to **Other** (for Parcel).
+5. Set the build command to `npm run build` and output directory to `dist`.
+6. Click **Deploy**.
+
+## 🖼️ Screenshots
+
+| Home Page                | Restaurant Menu              | Cart Page                |
+|--------------------------|------------------------------|--------------------------|
+| ![Home](src/assets/home.png) | ![Menu](src/assets/menu.png) | ![Cart](src/assets/cart.png) |
